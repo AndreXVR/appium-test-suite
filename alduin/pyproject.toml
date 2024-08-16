@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "alduin"
+version = "1.0.0"
+authors = [
+  { name="Andre", email="xavier.andre256@gmail.com" },
+]
+maintainers = [
+  { name="Andre", email="xavier.andre256@gmail.com" },
+]
+description = "Alduin, the test automation framework"
+license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["alduin", "framework", "appium"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+"Appium-Python-Client"
+]
+
+[project.urls]
+Repository = "https://github.com/AndreXVR/alduin-framework"
+Issues = "https://github.com/AndreXVR/alduin-framework/issues"
