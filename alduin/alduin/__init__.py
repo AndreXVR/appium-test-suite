@@ -1,13 +1,16 @@
-from appium import webdriver
-from appium.webdriver.appium_service import AppiumService
+import os
 from appium.options.android import UiAutomator2Options
+from appium.webdriver.appium_service import AppiumService, AppiumServiceError
 
 from . import appium_config
 from .driver import Driver
 
-def use():
-    appium_service = AppiumService()
-    print(appium_service)
-    if not appium_service.is_running:
-        appium_service.start()
-    return Driver.create(appium_server_url=appium_config.appium_server_url, capabilities=appium_config.capabilities)
+appium = AppiumService()
+
+
+def device(name: str = None):
+    print("here")
+    os.system('appium')
+    os.system('adb start-server')
+    print("done")
+    return Driver(name)

@@ -5,9 +5,20 @@ from appium.webdriver.common.appiumby import AppiumBy
 
 
 class Driver(WebDriver):
-    @staticmethod
-    def create(appium_server_url: str, capabilities: dict):
-        return Driver(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
+    appium_server_url = 'http://localhost:4723'
+
+    capabilities = dict(
+        platformName='Android',
+        automationName='uiautomator2'
+    )
+
+    def __init__(self, device_name: str = None):
+        if device_name:
+            self.capabilities['deviceName'] = device_name
+        options = UiAutomator2Options().load_capabilities(self.capabilities)
+        print(self.appium_server_url)
+        print(self.capabilities)
+        return webdriver.Remote(self.appium_server_url, options=options)
 
     def element(self, **kwargs):
         for key, value in kwargs.items():
