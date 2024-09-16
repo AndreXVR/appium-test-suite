@@ -1,7 +1,6 @@
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from urllib3.exceptions import NewConnectionError
 
 from alduin.constants import attributes
 from alduin.item import Item
@@ -19,10 +18,7 @@ class Device:
         if device_name:
             self.capabilities['deviceName'] = device_name
         options = UiAutomator2Options().load_capabilities(self.capabilities)
-        try:
-            self.driver = webdriver.Remote(self.appium_server_url, options=options)
-        except NewConnectionError as e:
-            raise AssertionError('Make sure appium server is running.') from e
+        self.driver = webdriver.Remote(self.appium_server_url, options=options)
 
     def _validate_kwargs(self, kwargs):
         attrib_set = set(attributes.keys())
@@ -32,9 +28,10 @@ class Device:
 
     def item(self, **kwargs):
         self._validate_kwargs(kwargs)
-        attribute = ''
+        xpath = ''
         for key, value in kwargs.items():
-            attribute += f' and @{key}=\'{value}\''
-        attribute = f'[{attribute[5:]}]'
-        filters = '//*'+attribute if kwargs else '//*'
-        return Item(self.driver.find_element(by=AppiumBy.XPATH, value=filters))
+            xpath += f' and @{attributes[key]}=\'{value}\''
+        xpath = f'[{xpath[5:]}]'
+        xpath = '//*'+xpath if kwargs else '//*'
+        print(xpath)
+        return Item(self.driver.find_element(by=AppiumBy.XPATH, value=xpath))
