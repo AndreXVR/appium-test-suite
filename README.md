@@ -1,5 +1,5 @@
 # alduin-framework
-Test Automation Framework using Appium
+Appium-based android test automation framework.
 
 
 ## Installation

@@ -22,7 +22,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-"Appium-Python-Client"
+"Appium-Python-Client",
+"pure-python-adb"
 ]
 
 [project.urls]
