@@ -16,3 +16,5 @@ attributes_dict = {
     "selected": "selected",
     "bounds": "bounds",
 }
+
+appium_capabilities = dict(platformName="Android", automationName="uiautomator2", newCommandTimeout=0)
